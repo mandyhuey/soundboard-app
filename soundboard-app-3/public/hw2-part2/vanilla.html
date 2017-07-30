@@ -113,10 +113,10 @@
 		</section>
         -->
         
-        <!-- MAIN CONTENT -->
+        <!-- MAIN CONTENT --> 
 		<main class="containerMain">
-			<div class="row">
-				<div class="col-md-4 col-sm-6 soundThumb">
+			<div class="row" id="soundBoard">
+		<!--		<div class="col-md-4 col-sm-6 soundThumb">
 					<img src="../img/stormtrooper.png" height="150" width="150" alt="Stormtrooper">
 					<h3>Stormtrooper</h3>
 					<audio controls>
@@ -139,9 +139,7 @@
 						<source src="../sounds/poe.mp3" type="audio/mpeg">
 					</audio>
 				</div>
-<!-- 			</div> -->
 
-			<!-- <div class="row"> -->
 				<div class="col-md-4 col-sm-6 soundThumb">
 					<img src="../img/bb8.png" height="150" width="150" alt="BB-8">
 					<h3>BB-8</h3>
@@ -165,9 +163,7 @@
 						<source src="../sounds/finn.wav" type="audio/wav">
 					</audio>
 				</div>
-		<!-- 	</div> -->
 
-			<!-- <div class="row"> -->
 				<div class="col-md-4 col-sm-6 soundThumb">
 					<img src="../img/hansolo.png" height="150" width="150" alt="Han Solo">
 					<h3>Han Solo</h3>
@@ -191,10 +187,8 @@
 						<source src="../sounds/luke.wav" type="audio/wav">
 					</audio>
 				</div>
-			<!-- </div> -->
 
-<!-- 			<div class="row">
- -->				<div class="col-md-4 col-sm-6 soundThumb">
+ 				<div class="col-md-4 col-sm-6 soundThumb">
 					<img src="../img/princessleia.png" height="150" width="150" alt="Princess Leia">
 					<h3>Princess Leia</h3>
 					<audio controls>
@@ -217,36 +211,68 @@
 						<source src="../sounds/r2d2.wav" type="audio/wav">
 					</audio>
 				</div>
-			</div>
-            <div id="soundBoard"></div>
-		</main>
+            </div> -->
+        </div>
+    </main>
 
     <script>
         var config = {
             boardName : 'Star Wars',
-            sounds : ['../sounds/stormtrooper.wav', '../sounds/kylo.wav', '../sounds/poe.mp3', '../sounds/bb8.wav', '../sounds/rey.mp3', '../sounds/finn.wav', '../sounds/hansolo.wav', '..sounds/chewy.wav', '../sounds/luke.wav', '../sounds/leia.wav', '../sounds/c3po.wav', '../sounds/r2d2.wav'],
-            imgs : ['../img/stormtrooper.png','../img/kyloren.png', '../img/poedameron.png', '../img/bb8.png', '../img/rey.png', '../img/hansolo.png', '../img/chewbacca.png', ',,/img/lukeskywalker.png', '../img/princessleia.png', '../img/c3po.png', '../img/r2d2.png'],
+            sounds : ['../sounds/stormtrooper.wav', '../sounds/kylo.wav', '../sounds/poe.mp3', '../sounds/bb8.wav', '../sounds/rey.mp3', '../sounds/finn.wav', '../sounds/hansolo.wav', '../sounds/chewy.wav', '../sounds/luke.wav', '../sounds/leia.wav', '../sounds/c3po.wav', '../sounds/r2d2.wav'],
+            imgs : ['../img/stormtrooper.png','../img/kyloren.png', '../img/poedameron.png', '../img/bb8.png', '../img/rey.png', '../img/finn.png', '../img/hansolo.png', '../img/chewbacca.png', '../img/lukeskywalker.png', '../img/princessleia.png', '../img/c3po.png', '../img/r2d2.png'],
 
             names: ['Stormtrooper', 'Kylo Ren', 'Poe Dameron', 'BB-8', 'Rey', 'Finn', 'Han Solo', 'Chewbacca', 'Luke Skywalker', 'Princess Leia', 'C3-PO', 'R2-D2']
         }
 
 
-
             window.onload = function(){
                 /*renderSoundBoard();*/
-                testerLoop(config);
+                makeSoundBoard(config);
              }
          
-         function testerLoop(config) {
+         function makeSoundBoard(config) {
              var numI;
+             var strSB1 = "<div class=\"col-md-4 col-sm-6 soundThumb\"><img src=\"";
+             var strSB2 = "\"height=\"150\" width=\"150\" alt=\"";
+             var strSB3 = "\"><h3>";
+             var strSB4 = "</h3><audio controls><source src=\"";
+             var strSB5 = "\" type=\"";
+             var strSB6 = "></audio></div>";
+             var strWAV = "audio/wav\"";
+             var strMP3 = "audio/mpeg\"";
+             var substrWAV = "wav";
+             var substrMP3 = "mp3";
+             var strSB = "";
+             var strSBfinal =  "";
              for (numI = 0; numI < 12; numI++){
-                 alert(config.sounds[numI]);
+                if (config.sounds[numI].indexOf(substrWAV) !== -1){
+                     strSB = strSB1+config.imgs[numI]
+                           + strSB2+config.names[numI]
+                           + strSB3+config.names[numI]
+                           + strSB4+config.sounds[numI]
+                           + strSB5+strWAV+strSB6;
+                 }
+                 else if (config.sounds[numI].indexOf(substrMP3) !== -1){
+                     strSB = strSB1+config.imgs[numI]
+                           + strSB2+config.names[numI]
+                           + strSB3+config.names[numI]
+                           + strSB4+config.sounds[numI]
+                           + strSB5+strMP3+strSB6;
+                 }
+                 else {
+                     console.log("Error: this sound doesn't exist.");}
+
+                 strSBfinal = strSBfinal + strSB;
+
              }
+             console.log(strSBfinal);
+             document.getElementById('soundBoard').innerHTML = strSBfinal;
+             
          }
 
          function renderSoundBoard(){
-             var strSB = "<div class=\"col-md-4 col-sm-6 soundThumb\"><img src=\"../img/hagrid.png\" height=\"150\" width=\"150\" alt=\"Hagrid\"><h3>Hagrid</h3><audio controls><source src=\"../sounds/insult.wav\" type=\"audio/wav\"></audio></div>"
-             document.getElementById('soundBoard').innerHTML = strSB;
+             var testerstrSB = "<div class=\"col-md-4 col-sm-6 soundThumb\"><img src=\"../img/hagrid.png\" height=\"150\" width=\"150\" alt=\"Hagrid\"><h3>Hagrid</h3><audio controls><source src=\"../sounds/insult.wav\" type=\"audio/wav\"></audio></div>"
+             document.getElementById('soundBoard').innerHTML = testerstrSB;
          }
      </script>
 
