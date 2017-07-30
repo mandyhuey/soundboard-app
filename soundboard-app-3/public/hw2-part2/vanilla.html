@@ -67,18 +67,22 @@
           <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="nav navbar-nav navbar-right">
                   <li class="active">
-                      <a href="#" onclick="makeSoundBoard(starWars);switchTheme(null);return false;">Home <span class="sr-only">(current)</span></a>
+                      <a href="#" onclick="makeSoundBoard(starWars, 'full');switchTheme(null);return false;">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li>
-                      <a href="#" id="darkLink" onclick="makeSoundBoard(starWars);switchTheme('darkSide');return false;">Dark Side</a>
+                      <a href="#" id="darkLink" onclick="makeSoundBoard(starWars, 'full');switchTheme('darkSide');return false;">Dark Side</a>
                   </li>
                   <li>
-                      <a href="#" id="lightLink" onclick="makeSoundBoard(starWars);switchTheme('lightSide');return false;">Light Side</a>
+                      <a href="#" id="lightLink" onclick="makeSoundBoard(starWars, 'full');switchTheme('lightSide');return false;">Light Side</a>
                   </li>
                   
                   <li>
-                      <a href="#" id="hpLink" onclick="makeSoundBoard(harryPotter);switchTheme('hpTheme');return false;">Harry Potter</a>
+                      <a href="#" id="hpLink" onclick="makeSoundBoard(harryPotter, 'full');switchTheme('hpTheme');return false;">Harry Potter</a>
                   </li>
+                  <li>
+                      <a href="#" id="compact" onclick="makeSoundBoard(starWars, 'compact');switchTheme(null);return false;">Compact</a>
+                  </li>
+
               </ul>
           </div>
       </div>
@@ -108,55 +112,92 @@
 
             names: ['Stormtrooper', 'Kylo Ren', 'Poe Dameron', 'BB-8', 'Rey', 'Finn', 'Han Solo', 'Chewbacca', 'Luke Skywalker', 'Princess Leia', 'C3-PO', 'R2-D2']
         }
+        
+        /* create JSON from object */
+        var hpJSON = JSON.stringify(harryPotter, null, 4);
+        var swJSON = JSON.stringify(starWars, null, 4);
 
         /* creates original Star Wars soundboard */
         window.onload = function(){
           /*renderSoundBoard();*/
-          makeSoundBoard(starWars);
+          makeSoundBoard(starWars, 'full');
         } 
 
         /* makeSoundBoard(config) takes a theme data structure and parses it to generate the images and sounds for the board */
-        function makeSoundBoard(config) {
-             document.getElementsByTagName("h1")[0].innerHTML = config.boardName;
-             var numI;
-             var strSB1 = "<div class=\"col-md-4 col-sm-6 soundThumb\"><img src=\"../img/";
-             var strSB2 = "\"height=\"150\" width=\"150\" alt=\"";
-             var strSB3 = "\"><h3>";
-             var strSB4 = "</h3><audio controls><source src=\"../sounds/";
-             var strSB5 = "\" type=\"";
-             var strSB6 = "></audio></div>";
-             var strWAV = "audio/wav\"";
-             var strMP3 = "audio/mpeg\"";
-             var substrWAV = "wav";
-             var substrMP3 = "mp3";
-             var strSB = "";
-             var strSBfinal =  "";
-             for (numI = 0; numI < 12; numI++){
-                if (config.sounds[numI].indexOf(substrWAV) !== -1){
-                     strSB = strSB1+config.imgs[numI]
-                           + strSB2+config.names[numI]
-                           + strSB3+config.names[numI]
-                           + strSB4+config.sounds[numI]
-                           + strSB5+strWAV+strSB6;
-                 }
-                 else if (config.sounds[numI].indexOf(substrMP3) !== -1){
-                     strSB = strSB1+config.imgs[numI]
-                           + strSB2+config.names[numI]
-                           + strSB3+config.names[numI]
-                           + strSB4+config.sounds[numI]
-                           + strSB5+strMP3+strSB6;
-                 }
-                 else {
-                     console.log("Error: this sound doesn't exist.");}
+        function makeSoundBoard(config, compORrich) {
+            document.getElementsByTagName("h1")[0].innerHTML = config.boardName;
+            var numI;
+            var strSB1 = "<div class=\"col-md-4 col-sm-6 soundThumb\"><img src=\"../img/";
+            var strSB2 = "\"height=\"150\" width=\"150\" alt=\"";
+            var strSB3 = "\"><h3>";
+            var strSB4 = "</h3><audio controls><source src=\"../sounds/";
+            var strSB5 = "\" type=\"";
+            var strSB6 = "></audio></div>";
+            var strWAV = "audio/wav\"";
+            var strMP3 = "audio/mpeg\"";
+            var substrWAV = "wav";
+            var substrMP3 = "mp3";
+            var strSB = "";
+            var strSBfinal =  "";
+            if(compORrich === 'compact'){
+                makeCompactSB(config, strSB4, strSB5, strSB6, substrWAV, strWAV, substrMP3, strMP3);
+                return;
+            }
+            else if (compORrich === 'full'){
+                for (numI = 0; numI < 12; numI++){
 
-                 strSBfinal = strSBfinal + strSB;
+                    if (config.sounds[numI].indexOf(substrWAV) !== -1){
+                        strSB = strSB1+config.imgs[numI]
+                            + strSB2+config.names[numI]
+                            + strSB3+config.names[numI]
+                            + strSB4+config.sounds[numI]
+                            + strSB5+strWAV+strSB6;
+                    }
+                    else if (config.sounds[numI].indexOf(substrMP3) !== -1){
+                        strSB = strSB1+config.imgs[numI]
+                            + strSB2+config.names[numI]
+                            + strSB3+config.names[numI]
+                            + strSB4+config.sounds[numI]
+                            + strSB5+strMP3+strSB6;
+                    }
+                    else {
+                        console.log("Error: this sound doesn't exist.");}
 
-             }
-             document.getElementById('soundBoard').innerHTML = strSBfinal;
-         }
+                    strSBfinal = strSBfinal + strSB;
 
-         /* renderSoudBoard() was our tester function to generate one image and sound */
-         function renderSoundBoard(){
+                }
+
+                document.getElementById('soundBoard').innerHTML = strSBfinal;
+            }
+        }
+        
+        /* makeCompactSB(config) takes a theme data structure and parses it to generate a column of sounds withouth the images */
+        function makeCompactSB(config, str4, str5, str6, subWAV, strWAV, subMP3, strMP3){
+            var strCSB1 = "<h3>";
+            var strCSB  ="";
+            var strCSBfinal = "";
+            var numCI;
+            for (numCI = 0; numCI < 12; numCI++){
+                if (config.sounds[numCI].indexOf(subWAV) !== -1){
+                    strCSB = strCSB1+config.names[numCI]
+                           + str4   +config.sounds[numCI]
+                           + str5   +strWAV +str6;
+                }
+                else if (config.sounds[numCI].indexOf(subMP3) !== -1){
+                    strCSB = strCSB1+config.names[numCI]
+                           + str4   +config.sounds[numCI]
+                           + str5   +strMP3 +str6;
+                }
+                else {
+                    console.log("Error: this sound doesn't exist.");
+                }
+                strCSBfinal = strCSBfinal + strCSB;
+            }
+            document.getElementById('soundBoard').innerHTML = strCSBfinal;
+        }
+            
+        /* renderSoudBoard() was our tester function to generate one image and sound */
+        function renderSoundBoard(){
              var testerstrSB = "<div class=\"col-md-4 col-sm-6 soundThumb\"><img src=\"../img/hagrid.png\" height=\"150\" width=\"150\" alt=\"Hagrid\"><h3>Hagrid</h3><audio controls><source src=\"../sounds/insult.wav\" type=\"audio/wav\"></audio></div>"
              document.getElementById('soundBoard').innerHTML = testerstrSB;
          }
