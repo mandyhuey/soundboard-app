@@ -27,7 +27,7 @@
 	<header class="container headerContainer">
 		<div class="row">
 			<div class="col-md-3 col-md-offset-2 col-sm-4 col-sm-offset-1 col-xs-8 col-xs-offset-2">
-               	<img src="../img/falcon-yellow.png"> 
+               	<img src="../img/falcon-yellow.png" alt="Yellow Falcon"> 
 			</div>
 			<div class="col-md-5 col-sm-6 col-xs-12">
 				<h1>Star Wars<br>Soundboard</h1>
@@ -173,7 +173,7 @@
         
         /* makeCompactSB(config) takes a theme data structure and parses it to generate a column of sounds withouth the images */
         function makeCompactSB(config, str4, str5, str6, subWAV, strWAV, subMP3, strMP3){
-            var strCSB1 = "<h3>";
+            var strCSB1 = "<center><h3>";
             var strCSB  ="";
             var strCSBfinal = "";
             var numCI;
@@ -191,7 +191,7 @@
                 else {
                     console.log("Error: this sound doesn't exist.");
                 }
-                strCSBfinal = strCSBfinal + strCSB;
+                strCSBfinal = strCSBfinal + strCSB + "</center>";
             }
             document.getElementById('soundBoard').innerHTML = strCSBfinal;
         }

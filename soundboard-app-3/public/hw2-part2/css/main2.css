@@ -10,7 +10,9 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	margin-top: 30px;
 /*	background-image: url(../../img/bg.png);*/
-	background-color: #1d1d1d; 
+/*  background-image: url(../../img/falcon-yellow.png);
+    background-repeat: no-repeat;*/
+    background-color: #1d1d1d; 
 	background-attachment: fixed;
 }
 .wrapper {

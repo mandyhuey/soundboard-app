@@ -1,7 +1,11 @@
 header > div:nth-Child(1) {
-    background-image: url(../../img/hogwarts.png);
+ 
+/*    background-image: url(../../img/hogwarts.png);
     background-repeat: no-repeat;
+*/
 }
+
+
 body {
     background-color: #800000;
 }
