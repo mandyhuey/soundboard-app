@@ -6,10 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Star Wars Soundboard</title>
 
-	<!-- Bootstrap -->
-<!-- 	<link href="css/bootstrap.min.css" rel="stylesheet"> -->
-
-	<!-- Main css -->
+	<!-- Main CSS -->
     <link href="css/main2.css" rel="stylesheet">
     <link href="css/darkTheme.css" rel="alternate stylesheet" title="darkSide">
     <link href="css/lightTheme.css" rel="alternate stylesheet" title="lightSide"> 
@@ -35,7 +32,8 @@
 			</div>
 		</div>
 	</header>
-   <script>
+    <script>
+        /* switchTheme(css_theme) will change the theme to the one that the user clicks on */
           function switchTheme(css_theme) {
               var numLinkI, strLinkTag;
               objLinkTag = document.getElementsByTagName("link");
@@ -90,6 +88,7 @@
     </main>
 
     <script>
+        /* data structure that holds the images and sounds for the Harry Potter theme */
         var harryPotter = {
             boardName: 'Harry Potter<br>Soundboard',
             sounds: ['mischief.mp3', 'episkey.mp3', 'finite-incantatem.mp3', 'dobby.mp3', 'require.mp3', 'insult.wav', 'avadakedavra.mp3', 'fun.mp3', 'ladies.mp3', 'pathetic.mp3', 'incendio.mp3', 'merlinsbeard2.mp3'],
@@ -98,6 +97,7 @@
             names: ['Harry Potter', 'Luna Lovegood', 'Ron Weasley', 'Dobby the Elf', 'Lord Voldemort', 'Rubeus Hagrid', 'Professor Snape', 'Professor Dumbledore','Fred & George', 'Draco Malfoy', 'Hermione Granger', 'Professor Slughorn']
         }
 
+        /* data structure that holds the images and sounds for the Star WArs theme */
         var starWars = {
             boardName: 'Star Wars<br>Soundboard',
             sounds: ['stormtrooper.wav', 'kylo.wav', 'poe.mp3', 'bb8.wav', 'rey.mp3', 'finn.wav', 'hansolo.wav', 'chewy.wav', 'luke.wav', 'leia.wav', 'c3po.wav', 'r2d2.wav'],
@@ -106,12 +106,13 @@
             names: ['Stormtrooper', 'Kylo Ren', 'Poe Dameron', 'BB-8', 'Rey', 'Finn', 'Han Solo', 'Chewbacca', 'Luke Skywalker', 'Princess Leia', 'C3-PO', 'R2-D2']
         }
 
+        /* creates original Star Wars soundboard */
+        window.onload = function(){
+          /*renderSoundBoard();*/
+          makeSoundBoard(starWars);
+        } 
 
-            window.onload = function(){
-                /*renderSoundBoard();*/
-                makeSoundBoard(starWars);
-             }
-         
+        /* makeSoundBoard(config) takes a theme data structure and parses it to generate the images and sounds for the board */
         function makeSoundBoard(config) {
              document.getElementsByTagName("h1")[0].innerHTML = config.boardName;
              var numI;
@@ -149,9 +150,9 @@
 
              }
              document.getElementById('soundBoard').innerHTML = strSBfinal;
-             
          }
 
+         /* renderSoudBoard() was our tester function to generate one image and sound */
          function renderSoundBoard(){
              var testerstrSB = "<div class=\"col-md-4 col-sm-6 soundThumb\"><img src=\"../img/hagrid.png\" height=\"150\" width=\"150\" alt=\"Hagrid\"><h3>Hagrid</h3><audio controls><source src=\"../sounds/insult.wav\" type=\"audio/wav\"></audio></div>"
              document.getElementById('soundBoard').innerHTML = testerstrSB;
