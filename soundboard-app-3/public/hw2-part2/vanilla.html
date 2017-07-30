@@ -13,6 +13,7 @@
     <link href="css/main2.css" rel="stylesheet">
     <link href="css/darkTheme.css" rel="alternate stylesheet" title="darkSide">
     <link href="css/lightTheme.css" rel="alternate stylesheet" title="lightSide"> 
+    <link href="css/hpTheme.css" rel="alternate stylesheet" title="hpTheme">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,7 +28,7 @@
 	<header class="container headerContainer">
 		<div class="row">
 			<div class="col-md-3 col-md-offset-2 col-sm-4 col-sm-offset-1 col-xs-8 col-xs-offset-2">
-				<img src="../img/falcon-yellow.png">
+               	<img src="../img/falcon-yellow.png"> 
 			</div>
 			<div class="col-md-5 col-sm-6 col-xs-12">
 				<h1>Star Wars<br>Soundboard</h1>
@@ -62,164 +63,45 @@
 	        <span class="icon-bar"></span>
 	      </button>
 
-	      <div class="collapse navbar-collapse" id="navbarNav">
-	        <ul class="nav navbar-nav navbar-right">
-	          <li class="active">
-	          	<a href="#">Home <span class="sr-only">(current)</span></a>
-	          </li>
-	          <li>
-	          	<a href="#" id="darkLink" onclick="switchTheme('darkSide');return false;">Dark Side</a>
-	          </li>
-	          <li>
-	          	<a href="#" id="lightLink" onclick="switchTheme('lightSide');return false;">Light Side</a>
-	          </li>
-	        </ul>
-	      </div>
-	    </div>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="nav navbar-nav navbar-right">
+                  <li class="active">
+                      <a href="#" onclick="makeSoundBoard(starWars);switchTheme(null);return false;">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li>
+                      <a href="#" id="darkLink" onclick="makeSoundBoard(starWars);switchTheme('darkSide');return false;">Dark Side</a>
+                  </li>
+                  <li>
+                      <a href="#" id="lightLink" onclick="makeSoundBoard(starWars);switchTheme('lightSide');return false;">Light Side</a>
+                  </li>
+                  
+                  <li>
+                      <a href="#" id="hpLink" onclick="makeSoundBoard(harryPotter);switchTheme('hpTheme');return false;">Harry Potter</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
 	  </nav>
      
-   		<!-- LOG IN
-		<section class="loginContainer">
-			<div class="row">
-				<form class="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-2">
-					<h1>Login</h1>
-                    
-                    <div class="form-group">
-						<div class="col-md-12 input-group">
-							<div class="input-group-addon">
-								<span class="glyphicon glyphicon-user"></span>
-		          </div>
-	          	<input type="email" class="form-control" name="email" placeholder="Email" id="inputEmail">
-	          </div>
-          </div> 
-
-					<div class="form-group">
-            <div class="col-md-12 input-group">
-            	<div class="input-group-addon">
-              	<span class="glyphicon glyphicon-lock"></span>
-             	</div>
-              <input type="password" class="form-control" name="password" id="passwordInput" placeholder="Password">
-            </div>
-          </div>
-
-          <div class="form-group">
-          	<div class="col-md-4 col-md-offset-8 col-xs-4 col-xs-offset-4">
-          		<button type="submit" class="btn btn-primary">Sign in</button>
-          	</div>
-          </div>
-
-				</form>
-			</div>
-		</section>
-        -->
-        
-        <!-- MAIN CONTENT --> 
+       <!-- MAIN CONTENT --> 
 		<main class="containerMain">
 			<div class="row" id="soundBoard">
-		<!--		<div class="col-md-4 col-sm-6 soundThumb">
-					<img src="../img/stormtrooper.png" height="150" width="150" alt="Stormtrooper">
-					<h3>Stormtrooper</h3>
-					<audio controls>
-						<source src="../sounds/stormtrooper.wav" type="audio/wav">
-					</audio>
-				</div>
-
-				<div class="col-md-4 col-sm-6 soundThumb">
-					<img src="../img/kyloren.png" height="150" width="150" alt="Kylo Ren">
-					<h3>Kylo Ren</h3>
-					<audio controls>
-						<source src="../sounds/kylo.wav" type="audio/wav">
-					</audio>
-				</div>
-
-				<div class="col-md-4 col-sm-6 soundThumb">
-					<img src="../img/poedameron.png" height="150" width="150" alt="Poe Dameron">
-					<h3>Poe Dameron</h3>
-					<audio controls>
-						<source src="../sounds/poe.mp3" type="audio/mpeg">
-					</audio>
-				</div>
-
-				<div class="col-md-4 col-sm-6 soundThumb">
-					<img src="../img/bb8.png" height="150" width="150" alt="BB-8">
-					<h3>BB-8</h3>
-					<audio controls>
-						<source src="../sounds/bb8.wav" type="audio/wav">
-					</audio>
-				</div>
-
-				<div class="col-md-4 col-sm-6 soundThumb">
-					<img src="../img/rey.png" height="150" width="150" alt="Rey">
-					<h3>Rey</h3>
-					<audio controls>
-						<source src="../sounds/rey.mp3" type="audio/mpeg">
-					</audio>
-				</div>
-
-				<div class="col-md-4 col-sm-6 soundThumb">
-					<img src="../img/finn.png" height="150" width="150" alt="Finn">
-					<h3>Finn</h3>
-					<audio controls>
-						<source src="../sounds/finn.wav" type="audio/wav">
-					</audio>
-				</div>
-
-				<div class="col-md-4 col-sm-6 soundThumb">
-					<img src="../img/hansolo.png" height="150" width="150" alt="Han Solo">
-					<h3>Han Solo</h3>
-					<audio controls>
-						<source src="../sounds/hansolo.wav" type="audio/wav">
-					</audio>
-				</div>
-
-				<div class="col-md-4 col-sm-6 soundThumb">
-					<img src="../img/chewbacca.png" height="150" width="150" alt="Chewbacca">
-					<h3>Chewbacca</h3>
-					<audio controls>
-						<source src="../sounds/chewy.wav" type="audio/wav">
-					</audio>
-				</div>
-
-				<div class="col-md-4 col-sm-6 soundThumb">
-					<img src="../img/lukeskywalker.png" height="150" width="150" alt="Luke Skywalker">
-					<h3>Luke Skywalker</h3>
-					<audio controls>
-						<source src="../sounds/luke.wav" type="audio/wav">
-					</audio>
-				</div>
-
- 				<div class="col-md-4 col-sm-6 soundThumb">
-					<img src="../img/princessleia.png" height="150" width="150" alt="Princess Leia">
-					<h3>Princess Leia</h3>
-					<audio controls>
-						<source src="../sounds/leia.wav" type="audio/wav">
-					</audio>
-				</div>
-
-				<div class="col-md-4 col-sm-6 soundThumb">
-					<img src="../img/c3po.png" height="150" width="150" alt="C3-P0">
-					<h3>C3-P0</h3>
-					<audio controls>
-						<source src="../sounds/c3po.wav" type="audio/wav">
-					</audio>
-				</div>
-
-				<div class="col-md-4 col-sm-6 soundThumb">
-					<img src="../img/r2d2.png" height="150" width="150" alt="R2-D2">
-					<h3>R2-D2</h3>
-					<audio controls>
-						<source src="../sounds/r2d2.wav" type="audio/wav">
-					</audio>
-				</div>
-            </div> -->
-        </div>
+    </div>
     </main>
 
     <script>
-        var config = {
-            boardName : 'Star Wars',
-            sounds : ['../sounds/stormtrooper.wav', '../sounds/kylo.wav', '../sounds/poe.mp3', '../sounds/bb8.wav', '../sounds/rey.mp3', '../sounds/finn.wav', '../sounds/hansolo.wav', '../sounds/chewy.wav', '../sounds/luke.wav', '../sounds/leia.wav', '../sounds/c3po.wav', '../sounds/r2d2.wav'],
-            imgs : ['../img/stormtrooper.png','../img/kyloren.png', '../img/poedameron.png', '../img/bb8.png', '../img/rey.png', '../img/finn.png', '../img/hansolo.png', '../img/chewbacca.png', '../img/lukeskywalker.png', '../img/princessleia.png', '../img/c3po.png', '../img/r2d2.png'],
+        var harryPotter = {
+            boardName: 'Harry Potter<br>Soundboard',
+            sounds: ['mischief.mp3', 'episkey.mp3', 'finite-incantatem.mp3', 'dobby.mp3', 'require.mp3', 'insult.wav', 'avadakedavra.mp3', 'fun.mp3', 'ladies.mp3', 'pathetic.mp3', 'incendio.mp3', 'merlinsbeard2.mp3'],
+            imgs: ['harry.png', 'luna.png', 'ron.png', 'dobby.png', 'voldemort.png', 'hagrid.png', 'snape.png', 'dumbledore.png', 'fredgeorge.png', 'draco.png', 'hermione.png', 'slughorn.png'],
+
+            names: ['Harry Potter', 'Luna Lovegood', 'Ron Weasley', 'Dobby the Elf', 'Lord Voldemort', 'Rubeus Hagrid', 'Professor Snape', 'Professor Dumbledore','Fred & George', 'Draco Malfoy', 'Hermione Granger', 'Professor Slughorn']
+        }
+
+        var starWars = {
+            boardName: 'Star Wars<br>Soundboard',
+            sounds: ['stormtrooper.wav', 'kylo.wav', 'poe.mp3', 'bb8.wav', 'rey.mp3', 'finn.wav', 'hansolo.wav', 'chewy.wav', 'luke.wav', 'leia.wav', 'c3po.wav', 'r2d2.wav'],
+            imgs: ['stormtrooper.png','kyloren.png', 'poedameron.png', 'bb8.png', 'rey.png', 'finn.png', 'hansolo.png', 'chewbacca.png', 'lukeskywalker.png', 'princessleia.png', 'c3po.png', 'r2d2.png'],
 
             names: ['Stormtrooper', 'Kylo Ren', 'Poe Dameron', 'BB-8', 'Rey', 'Finn', 'Han Solo', 'Chewbacca', 'Luke Skywalker', 'Princess Leia', 'C3-PO', 'R2-D2']
         }
@@ -227,15 +109,16 @@
 
             window.onload = function(){
                 /*renderSoundBoard();*/
-                makeSoundBoard(config);
+                makeSoundBoard(starWars);
              }
          
-         function makeSoundBoard(config) {
+        function makeSoundBoard(config) {
+             document.getElementsByTagName("h1")[0].innerHTML = config.boardName;
              var numI;
-             var strSB1 = "<div class=\"col-md-4 col-sm-6 soundThumb\"><img src=\"";
+             var strSB1 = "<div class=\"col-md-4 col-sm-6 soundThumb\"><img src=\"../img/";
              var strSB2 = "\"height=\"150\" width=\"150\" alt=\"";
              var strSB3 = "\"><h3>";
-             var strSB4 = "</h3><audio controls><source src=\"";
+             var strSB4 = "</h3><audio controls><source src=\"../sounds/";
              var strSB5 = "\" type=\"";
              var strSB6 = "></audio></div>";
              var strWAV = "audio/wav\"";
@@ -265,7 +148,6 @@
                  strSBfinal = strSBfinal + strSB;
 
              }
-             console.log(strSBfinal);
              document.getElementById('soundBoard').innerHTML = strSBfinal;
              
          }
@@ -281,7 +163,7 @@
 			<div class="row">
 				<div class="col-md-12 footerContent">
 					<p>
-						Disclaimer: We do not own any of the Star Wars characters or sounds. All copyrights belong to The Walt Disney Company.
+						Disclaimer: We do not own any of the characters or sounds on this soundboard. All copyrights belong to their respective creators.
 					</p>
 				</div>
 			</div>
